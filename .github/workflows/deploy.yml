@@ -51,6 +51,7 @@ jobs:
           path: dist 
         
       - run: ls dist
+      - run: echo ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/checkout@v2
       - id: Build-Vue
