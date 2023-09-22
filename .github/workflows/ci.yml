@@ -45,14 +45,21 @@ jobs:
   unit-test:
     needs: lint-format-job
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x]
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set node version to 18
+      # - name: Set node version to 18
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: '18.x'
+      #     cache: 'npm'
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: '18.x'
-          cache: 'npm'
+          node-version: ${{ matrix.node-version }}
 
       - run: npm ci
 
