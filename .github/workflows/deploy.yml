@@ -28,6 +28,7 @@ jobs:
           path: dist  
 
   deploy-production-job:
+    needs: build-production-job
     runs-on: ubuntu-latest
     steps:
     #  - uses: actions/checkout@v4
