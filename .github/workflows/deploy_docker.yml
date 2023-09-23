@@ -22,6 +22,8 @@ jobs:
   auto-deploy-docker-job:
     needs: release-docker-image-job
     runs-on: ubuntu-latest
+    env:
+      CONTAINER_NAME: 'akenarin-vue-app'
     steps:
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@v1.0.0
@@ -30,4 +32,8 @@ jobs:
         username: 'root'
         password: '$Admin_1jj395qu'
         port: '22'
-        script: whoami
+        script: |
+          - whoami
+          - docker stop ${{ env.CONTAINER_NAME }} || true && docker rm ${{ env.CONTAINER_NAME }} || true
+          - docker pull ghcr.io/codingthailand/vue-github-actions-teach:latest
+          - docker run --restart=always -d --name ${{ env.CONTAINER_NAME }} -p 9001:80 $5
