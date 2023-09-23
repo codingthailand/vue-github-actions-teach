@@ -11,12 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-          
+
       - uses: mr-smithers-excellent/docker-build-push@v6
         with:
-          image: vue-github-actions-teach
+          image: ${{ github.event.repository.name }}
           registry: ghcr.io
-          username: ${{ github.actor }}
+          username: ${{ github.event.repository }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       
