@@ -1,0 +1,20 @@
+name: 'deploy docker'
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+
+  release-docker-image-job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: mr-smithers-excellent/docker-build-push@v6
+        with:
+          image: ${{ github.repository }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      
