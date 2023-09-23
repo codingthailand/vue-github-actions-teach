@@ -1,9 +1,11 @@
 name: 'deploy docker'
 
-on:
-  push:
-    tags:
-      - "*"
+# on:
+#   push:
+#     tags:
+#       - "*"
+
+on: [label]
 
 jobs:
 

@@ -3,7 +3,7 @@ name: 'deploy'
 on:
   push:
     tags:
-      - "v55.0.0"
+      - "*"
 jobs:
   build-production-job:
     runs-on: ubuntu-latest
