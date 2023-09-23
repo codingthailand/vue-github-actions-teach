@@ -36,4 +36,4 @@ jobs:
           - whoami
           - docker stop ${{ env.CONTAINER_NAME }} || true && docker rm ${{ env.CONTAINER_NAME }} || true
           - docker pull ghcr.io/codingthailand/vue-github-actions-teach:latest
-          - docker run --restart=always -d --name ${{ env.CONTAINER_NAME }} -p 9001:80 $5
+          - docker run --restart=always -d --name ${{ env.CONTAINER_NAME }} -p 9001:80 ghcr.io/codingthailand/vue-github-actions-teach:latest
