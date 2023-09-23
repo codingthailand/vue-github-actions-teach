@@ -10,9 +10,11 @@ jobs:
   release-docker-image-job:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+          
       - uses: mr-smithers-excellent/docker-build-push@v6
         with:
-          image: ${{ github.repository }}
+          image: vue-github-actions-teach
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
