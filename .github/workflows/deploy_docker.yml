@@ -24,6 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CONTAINER_NAME: 'akenarin-vue-app'
+      DOCKER_IMAGE_URL: 'ghcr.io/${{ github.actor }}/${{ github.event.repository.name }}:${{  github.ref_name }}'
     steps:
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@v1.0.0
@@ -35,5 +36,5 @@ jobs:
         script: |
           - whoami
           - docker stop ${{ env.CONTAINER_NAME }} || true && docker rm ${{ env.CONTAINER_NAME }} || true
-          - docker pull ghcr.io/codingthailand/vue-github-actions-teach:latest
-          - docker run --restart=always -d --name ${{ env.CONTAINER_NAME }} -p 9001:80 ghcr.io/codingthailand/vue-github-actions-teach:latest
+          - docker pull ${{ env.DOCKER_IMAGE_URL }}
+          - docker run --restart=always -d --name ${{ env.CONTAINER_NAME }} -p 9001:80 ${{ env.DOCKER_IMAGE_URL }}
