@@ -34,7 +34,7 @@ jobs:
         password: '$Admin_1jj395qu'
         port: '22'
         script: |
-          - whoami
-          - docker stop ${{ env.CONTAINER_NAME }} || true && docker rm ${{ env.CONTAINER_NAME }} || true
-          - docker pull ${{ env.DOCKER_IMAGE_URL }}
-          - docker run --restart=always -d --name ${{ env.CONTAINER_NAME }} -p 9001:80 ${{ env.DOCKER_IMAGE_URL }}
+          whoami
+          docker stop ${{ env.CONTAINER_NAME }} || true && docker rm ${{ env.CONTAINER_NAME }} || true
+          docker pull ${{ env.DOCKER_IMAGE_URL }}
+          docker run --restart=always -d --name ${{ env.CONTAINER_NAME }} -p 9001:80 ${{ env.DOCKER_IMAGE_URL }}
