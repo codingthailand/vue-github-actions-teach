@@ -2,14 +2,13 @@ name: 'deploy docker'
 
 on:
   push:
-    branches: 
-      - production
     tags:
       - "*"
 
 jobs:
 
   release-docker-image-job:
+    if: github.ref == 'refs/heads/production'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -23,6 +22,7 @@ jobs:
 
   auto-deploy-docker-job:
     needs: release-docker-image-job
+    if: github.ref == 'refs/heads/production'
     runs-on: ubuntu-latest
     env:
       CONTAINER_NAME: 'akenarin-vue-app'
