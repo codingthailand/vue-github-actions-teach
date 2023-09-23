@@ -51,11 +51,12 @@ jobs:
           path: dist 
         
       - run: ls dist
+      - run: echo ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/checkout@v2
       - id: Build-Vue
         uses: SerhiiKa/VuePagesAction@1.0.4
         with:
-          username: 'YourGithubName'
-          reponame: 'YourRepoName'
+          username: 'codingthailand'
+          reponame: 'vue-github-actions-teach'
           token: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged
